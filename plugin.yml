@@ -1,0 +1,11 @@
+name: FirstPlugin
+main: me.spigot.server.Main
+version: 1.0
+author: taiki
+commands:
+  Hello:
+  bow:
+  op_sword:
+  god_apple:
+  pickaxe:
+  clear_world:
