@@ -15,6 +15,7 @@ public class Main extends JavaPlugin{
 	public void onEnable() {
 		getServer().getPluginManager().registerEvents(new Playermove(), this);
 	}
+	//Test Test Test Test TestTest 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
 		if (label.equalsIgnoreCase("hello")) {
 			if (sender instanceof Player) {
