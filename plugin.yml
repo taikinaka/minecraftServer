@@ -9,3 +9,5 @@ commands:
   god_apple:
   pickaxe:
   clear_world:
+  canwalk:
+  lava_game_start:
