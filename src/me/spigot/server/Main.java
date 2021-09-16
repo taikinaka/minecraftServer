@@ -106,8 +106,14 @@ public class Main extends JavaPlugin{
 				Location loc = player.getLocation();
 				World targetWorld = loc.getWorld();
 				
-				player.sendTitle("Welcome, "+ChatColor.AQUA+player.getDisplayName(), "Hello", 10, 70, 20);
-				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("Test"));
+				player.sendTitle("Welcome, "+ChatColor.AQUA+player.getDisplayName(), "Welcome to lava game,", 10, 70, 20);
+				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("Doge the lava that will spawn every 5 seconds."));
+				
+				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("5"));
+				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("4"));
+				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("3"));
+				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("2"));
+				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("1"));
 				
 				
 				

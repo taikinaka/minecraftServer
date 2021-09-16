@@ -1,7 +1,6 @@
 package me.spigot.server;
 
 import java.util.Random;
-
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -14,6 +13,8 @@ public class Playermove implements Listener {
 	public boolean canwalk;
 	@EventHandler
 	public void onPlayerMove (PlayerMoveEvent event) {
+
+		
 		Material[] wools = {Material.BLACK_WOOL, 
 							Material.BLUE_WOOL,
 							Material.BROWN_WOOL,
