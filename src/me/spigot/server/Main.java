@@ -15,11 +15,17 @@ import net.md_5.bungee.api.ChatMessageType;
 import net.md_5.bungee.api.chat.TextComponent;
 
 public class Main extends JavaPlugin{
+	private static Main instance;
 	public Playermove pm;
+	public SimonSays game;
 	@Override
 	public void onEnable() {
+		instance = this;
 		pm=new Playermove();
 		getServer().getPluginManager().registerEvents(pm, this);
+	}
+	public static Main getInstance() {
+		return instance;
 	}
 	//Test Test Test Test TestTest 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
@@ -100,56 +106,46 @@ public class Main extends JavaPlugin{
 				return true;
 			}
 		}
-		else if (label.equalsIgnoreCase("lava_game_start")) {
-			if (sender instanceof Player) {
+		else if(label.equalsIgnoreCase("arenastop")) {
+			if(sender instanceof Player) {
+				
 				Player player = (Player) sender;
-				Location loc = player.getLocation();
-				World targetWorld = loc.getWorld();
 				
-				player.sendTitle("Welcome, "+ChatColor.AQUA+player.getDisplayName(), "Welcome to lava game,", 10, 70, 20);
-				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("Doge the lava that will spawn every 5 seconds."));
-				
-				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("5"));
-				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("4"));
-				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("3"));
-				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("2"));
-				player.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("1"));
-				
-				
-				
-				
-				for (int x=0; x<40;x++) {
-					for (int z=0; z<40;z++) {
-						if (x<20) {
-							if (z<20) {
-								targetWorld.getBlockAt(loc.getBlockX()+x-20,loc.getBlockY()-1,loc.getBlockZ()+z-20).setType(Material.BLUE_WOOL);
-							}
-							else if (z>20) {
-								targetWorld.getBlockAt(loc.getBlockX()+x-20,loc.getBlockY()-1,loc.getBlockZ()+z-20).setType(Material.RED_WOOL);
-							}
-							else {
-								targetWorld.getBlockAt(loc.getBlockX()+x-20,loc.getBlockY()-1,loc.getBlockZ()+z-20).setType(Material.BLACK_WOOL);
-							}
-						}
-						else if (x>20) {
-							if (z<20) {
-								targetWorld.getBlockAt(loc.getBlockX()+x-20,loc.getBlockY()-1,loc.getBlockZ()+z-20).setType(Material.GREEN_WOOL);
-							}
-							else if (z>20) {
-								targetWorld.getBlockAt(loc.getBlockX()+x-20,loc.getBlockY()-1,loc.getBlockZ()+z-20).setType(Material.YELLOW_WOOL);
-							}
-							else {
-								targetWorld.getBlockAt(loc.getBlockX()+x-20,loc.getBlockY()-1,loc.getBlockZ()+z-20).setType(Material.BLACK_WOOL);
-							}
-						}
-						else {
-							targetWorld.getBlockAt(loc.getBlockX()+x-20,loc.getBlockY()-1,loc.getBlockZ()+z-20).setType(Material.BLACK_WOOL);
-						}
-					}
+				if (!player.isOp()) {
+					return false;
 				}
+				game.stopgame();
 				return true;
+				
 			}
 		}
+		else if(label.equalsIgnoreCase("arena")) {
+			if(sender instanceof Player) {
+				
+				Player player = (Player) sender;
+				
+				if (!player.isOp()) {
+					return false;
+				}
+				
+				Location loc = player.getLocation();
+				
+				
+				
+				player.sendTitle(ChatColor.AQUA +"Simon Says...","Get Ready!", 10, 70, 20); 
+		        player.spigot().sendMessage(ChatMessageType.ACTION_BAR,new TextComponent("Get Ready!"));
+		        
+		        game = new SimonSays(loc,getInstance());
+				game.startgame();
+				
+				
+				
+					
+				}
+				return true;
+				
+			}
+		
 		
 		
 		

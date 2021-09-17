@@ -11,4 +11,5 @@ commands:
   pickaxe:
   clear_world:
   canwalk:
-  lava_game_start: 
+  arena:
+  arenastop: 
