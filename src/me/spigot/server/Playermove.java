@@ -43,5 +43,11 @@ public class Playermove implements Listener {
 			targetWorld.getBlockAt(loc.getBlockX(),loc.getBlockY(),loc.getBlockZ()).setType(rWool);
 				
 		}
+		
+		if (blockName.equals("LAVA")) {
+			player.setHealth(0);
+		}
 	}
+	//LivingEntity.getFireTicks != 0
+	
 }
