@@ -129,7 +129,7 @@ public class Main extends JavaPlugin{
 				}
 				
 				Location loc = player.getLocation();
-				
+				pm.arenaCenter=loc;
 				
 				
 				player.sendTitle(ChatColor.AQUA +"Simon Says...","Get Ready!", 10, 70, 20); 

@@ -24,12 +24,12 @@ public class SimonSays implements Runnable {
 		
 	}
 	public void startgame() {
-		resetArena();
+		arena();
 		ready=true;
 		this.assignedTaskId=Bukkit.getScheduler().scheduleSyncRepeatingTask(instance,this,0L,20L);
 		
 	}
-	public void resetArena() {
+	public void arena() {
 		for(int x = 0; x < 40; x++) {
 			for(int z = 0; z<40; z++)
 			{
@@ -60,7 +60,34 @@ public class SimonSays implements Runnable {
 				else {
 					targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()-1,loc.getBlockZ()+z - 20).setType(Material.BLACK_CONCRETE);
 				}
+			
 			}
+		}
+		for (int x=0; x<40;x++) {
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+0,loc.getBlockZ() - 21).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+1,loc.getBlockZ() - 21).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+2,loc.getBlockZ() - 21).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+3,loc.getBlockZ() - 21).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+4,loc.getBlockZ() - 21).setType(Material.BARRIER);
+			
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+0,loc.getBlockZ() + 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+1,loc.getBlockZ() + 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+2,loc.getBlockZ() + 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+3,loc.getBlockZ() + 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+4,loc.getBlockZ() + 20).setType(Material.BARRIER);
+		}
+		for (int z=0; z<=40; z++) {
+			targetWorld.getBlockAt(loc.getBlockX() - 21,loc.getBlockY()+0,loc.getBlockZ()+z - 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX() - 21,loc.getBlockY()+1,loc.getBlockZ()+z - 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX() - 21,loc.getBlockY()+2,loc.getBlockZ()+z - 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX() - 21,loc.getBlockY()+3,loc.getBlockZ()+z - 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX() - 21,loc.getBlockY()+4,loc.getBlockZ()+z - 20).setType(Material.BARRIER);
+			
+			targetWorld.getBlockAt(loc.getBlockX() + 20,loc.getBlockY()+0,loc.getBlockZ()+z - 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX() + 20,loc.getBlockY()+1,loc.getBlockZ()+z - 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX() + 20,loc.getBlockY()+2,loc.getBlockZ()+z - 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX() + 20,loc.getBlockY()+3,loc.getBlockZ()+z - 20).setType(Material.BARRIER);
+			targetWorld.getBlockAt(loc.getBlockX() + 20,loc.getBlockY()+4,loc.getBlockZ()+z - 20).setType(Material.BARRIER);
 		}
 	}
 	public void setLavaBlocks() {
@@ -112,6 +139,14 @@ public class SimonSays implements Runnable {
 		
 		
 	}
+	public void resetArena() {
+		for(int x = 0; x < 40; x++) {
+			for(int z = 0; z<40; z++)
+			{
+				targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()-1,loc.getBlockZ()+z - 20).setType(Material.GRASS_BLOCK);
+			}
+		}
+	}
 	public void CountdownLava(int time) {
 		CountdownTimer timer = new CountdownTimer(instance,
 		        time,
@@ -137,7 +172,7 @@ public class SimonSays implements Runnable {
 		        () -> {
 		        	Bukkit.getOnlinePlayers().forEach((p)->p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent("Safe")));
 		            
-					resetArena();
+					arena();
 					ready=true;
 		        },
 		        (t) -> {Bukkit.getOnlinePlayers().forEach((p)->p.spigot().sendMessage(ChatMessageType.ACTION_BAR, new TextComponent(String.valueOf(t.getSecondsLeft()))));
@@ -152,12 +187,13 @@ public class SimonSays implements Runnable {
 	public void run() {
 		if(ready) {
 			ready=false;
-			CountdownLava(10);
+			CountdownLava(5);
 			
 		}
 	}
 	public void stopgame() {
 		ready=false;
+		resetArena();
 		if(assignedTaskId !=null) {
 			Bukkit.getScheduler().cancelTask(assignedTaskId);
 		}

@@ -11,6 +11,7 @@ import org.bukkit.event.player.PlayerMoveEvent;
 
 public class Playermove implements Listener {
 	public boolean canwalk;
+	public Location arenaCenter;
 	@EventHandler
 	public void onPlayerMove (PlayerMoveEvent event) {
 
@@ -45,7 +46,9 @@ public class Playermove implements Listener {
 		}
 		
 		if (blockName.equals("LAVA")) {
-			player.setHealth(0);
+			Location respawnPoint=arenaCenter;
+			respawnPoint.setX(arenaCenter.getBlockX()+25);
+			player.teleport(respawnPoint);
 		}
 	}
 	//LivingEntity.getFireTicks != 0
