@@ -1,5 +1,6 @@
 package me.spigot.server;
 
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -128,9 +129,14 @@ public class Main extends JavaPlugin{
 					return false;
 				}
 				
-				Location loc = player.getLocation();
+				Location loc = new Location(player.getLocation().getWorld(),player.getLocation().getBlockX(),player.getLocation().getBlockY(),player.getLocation().getBlockZ());
 				pm.arenaCenter=loc;
-				
+				for (Player players:Bukkit.getServer().getOnlinePlayers()) {
+					players.teleport(loc);
+					if(!player.isOp()) {
+					players.getInventory().clear();
+					}
+				}
 				
 				player.sendTitle(ChatColor.AQUA +"Simon Says...","Get Ready!", 10, 70, 20); 
 		        player.spigot().sendMessage(ChatMessageType.ACTION_BAR,new TextComponent("Get Ready!"));

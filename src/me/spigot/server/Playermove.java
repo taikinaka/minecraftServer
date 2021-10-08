@@ -1,6 +1,8 @@
 package me.spigot.server;
 
 import java.util.Random;
+
+import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
@@ -46,9 +48,9 @@ public class Playermove implements Listener {
 		}
 		
 		if (blockName.equals("LAVA")) {
-			Location respawnPoint=arenaCenter;
-			respawnPoint.setX(arenaCenter.getBlockX()+25);
-			player.teleport(respawnPoint);
+			arenaCenter.add(25,0,0);
+			player.teleport(arenaCenter);
+			arenaCenter.subtract(25,0,0);
 		}
 	}
 	//LivingEntity.getFireTicks != 0

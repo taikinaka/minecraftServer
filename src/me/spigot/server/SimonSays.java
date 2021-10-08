@@ -146,6 +146,32 @@ public class SimonSays implements Runnable {
 				targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()-1,loc.getBlockZ()+z - 20).setType(Material.GRASS_BLOCK);
 			}
 		}
+		for (int x=0; x<40;x++) {
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+0,loc.getBlockZ() - 21).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+1,loc.getBlockZ() - 21).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+2,loc.getBlockZ() - 21).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+3,loc.getBlockZ() - 21).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+4,loc.getBlockZ() - 21).setType(Material.AIR);
+			
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+0,loc.getBlockZ() + 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+1,loc.getBlockZ() + 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+2,loc.getBlockZ() + 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+3,loc.getBlockZ() + 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX()+x - 20,loc.getBlockY()+4,loc.getBlockZ() + 20).setType(Material.AIR);
+		}
+		for (int z=0; z<=40; z++) {
+			targetWorld.getBlockAt(loc.getBlockX() - 21,loc.getBlockY()+0,loc.getBlockZ()+z - 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX() - 21,loc.getBlockY()+1,loc.getBlockZ()+z - 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX() - 21,loc.getBlockY()+2,loc.getBlockZ()+z - 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX() - 21,loc.getBlockY()+3,loc.getBlockZ()+z - 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX() - 21,loc.getBlockY()+4,loc.getBlockZ()+z - 20).setType(Material.AIR);
+			
+			targetWorld.getBlockAt(loc.getBlockX() + 20,loc.getBlockY()+0,loc.getBlockZ()+z - 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX() + 20,loc.getBlockY()+1,loc.getBlockZ()+z - 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX() + 20,loc.getBlockY()+2,loc.getBlockZ()+z - 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX() + 20,loc.getBlockY()+3,loc.getBlockZ()+z - 20).setType(Material.AIR);
+			targetWorld.getBlockAt(loc.getBlockX() + 20,loc.getBlockY()+4,loc.getBlockZ()+z - 20).setType(Material.AIR);
+		}
 	}
 	public void CountdownLava(int time) {
 		CountdownTimer timer = new CountdownTimer(instance,
