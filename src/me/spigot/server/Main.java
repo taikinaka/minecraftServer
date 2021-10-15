@@ -19,6 +19,7 @@ public class Main extends JavaPlugin{
 	private static Main instance;
 	public Playermove pm;
 	public SimonSays game;
+	public Survival survivalgame;
 	@Override
 	public void onEnable() {
 		instance = this;
@@ -45,6 +46,19 @@ public class Main extends JavaPlugin{
 				item.addUnsafeEnchantment(Enchantment.DURABILITY, 255);
 				item.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK,255);
 				player.getInventory().addItem(item);
+				return true;
+			}
+		}
+		else if (label.equalsIgnoreCase("randomitem")) {
+			if (sender instanceof Player) {
+				Player player = (Player) sender;
+				
+				if (!player.isOp()) {
+					return false;
+				}
+				
+				survivalgame = new Survival(getInstance());
+				survivalgame.ready=true;
 				return true;
 			}
 		}
@@ -133,9 +147,7 @@ public class Main extends JavaPlugin{
 				pm.arenaCenter=loc;
 				for (Player players:Bukkit.getServer().getOnlinePlayers()) {
 					players.teleport(loc);
-					if(!player.isOp()) {
 					players.getInventory().clear();
-					}
 				}
 				
 				player.sendTitle(ChatColor.AQUA +"Simon Says...","Get Ready!", 10, 70, 20); 
