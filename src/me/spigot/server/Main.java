@@ -50,12 +50,14 @@ public class Main extends JavaPlugin{
 			}
 		}
 		else if (label.equalsIgnoreCase("randomitem")) {
+			System.out.println("Giving Random Item command input True");
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
 				
 				if (!player.isOp()) {
 					return false;
 				}
+				System.out.println("Giving Random Item Opped True");
 				
 				survivalgame = new Survival(getInstance());
 				survivalgame.ready=true;
@@ -69,6 +71,7 @@ public class Main extends JavaPlugin{
 				item.addUnsafeEnchantment(Enchantment.DURABILITY,255);
 				item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL,255);
 				player.getInventory().addItem(item);
+				System.out.println("op Sword");
 				return true;
 			}
 		}

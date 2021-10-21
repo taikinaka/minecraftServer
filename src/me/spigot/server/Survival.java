@@ -4,6 +4,7 @@ import java.util.Random;
 
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.Material;
 
@@ -17,15 +18,16 @@ public class Survival implements Runnable {
 	private Integer assignedTaskId;
 	public Survival(Main inst) {
 		this.instance=inst;
-		this.ready=false;
+	//	this.ready=false;
+		System.out.println("game started");
+		this.assignedTaskId=Bukkit.getScheduler().scheduleSyncRepeatingTask(instance,this,0L,20L);
 	}
 	@Override
 	public void run() {
 		if(ready) {
 			ready=false;
-			this.assignedTaskId=Bukkit.getScheduler().scheduleSyncRepeatingTask(instance,this,0L,20L);
+			System.out.println("Giving Random Item #2");
 			Timer(3);
-			
 		}
 	}
 	public void Timer(int time) {
