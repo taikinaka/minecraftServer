@@ -24,6 +24,7 @@ public class Main extends JavaPlugin{
 	public void onEnable() {
 		instance = this;
 		pm=new Playermove();
+		survivalgame = new Survival(getInstance());
 		getServer().getPluginManager().registerEvents(pm, this);
 	}
 	public static Main getInstance() {
@@ -31,16 +32,13 @@ public class Main extends JavaPlugin{
 	}
 	//Test Test Test Test TestTest 
 	public boolean onCommand(CommandSender sender, Command cmd, String label, String[] args) {
-		if (label.equalsIgnoreCase("hello")) {
+
+		if (label.equalsIgnoreCase("bow")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
-				player.sendMessage("Hello world!");
-				return true;
-			}
-		}
-		else if (label.equalsIgnoreCase("bow")) {
-			if (sender instanceof Player) {
-				Player player = (Player) sender;
+				if (!player.isOp()) {
+					return false;
+				}
 				ItemStack item = new ItemStack(Material.BOW,1);
 				item.addUnsafeEnchantment(Enchantment.KNOCKBACK,255);
 				item.addUnsafeEnchantment(Enchantment.DURABILITY, 255);
@@ -52,21 +50,28 @@ public class Main extends JavaPlugin{
 		else if (label.equalsIgnoreCase("randomitem")) {
 			System.out.println("Giving Random Item command input True");
 			if (sender instanceof Player) {
+				String randomswitch = args[0];
 				Player player = (Player) sender;
 				
 				if (!player.isOp()) {
 					return false;
 				}
 				System.out.println("Giving Random Item Opped True");
-				
-				survivalgame = new Survival(getInstance());
-				survivalgame.ready=true;
+				if(randomswitch.equals("True") || randomswitch.equals("true")) {
+					survivalgame.startgame();
+				}
+				else {
+					survivalgame.stopgame();
+				}
 				return true;
 			}
 		}
 		else if (label.equalsIgnoreCase("op_sword")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
+				if (!player.isOp()) {
+					return false;
+				}
 				ItemStack item = new ItemStack(Material.NETHERITE_SWORD,1);
 				item.addUnsafeEnchantment(Enchantment.DURABILITY,255);
 				item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL,255);
@@ -78,6 +83,9 @@ public class Main extends JavaPlugin{
 		else if (label.equalsIgnoreCase("god_apple")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
+				if (!player.isOp()) {
+					return false;
+				}
 				ItemStack item = new ItemStack(Material.ENCHANTED_GOLDEN_APPLE,128);
 				item.addUnsafeEnchantment(Enchantment.DAMAGE_ALL,255);
 				item.addUnsafeEnchantment(Enchantment.FIRE_ASPECT,255);
@@ -89,6 +97,9 @@ public class Main extends JavaPlugin{
 		else if (label.equalsIgnoreCase("pickaxe")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
+				if (!player.isOp()) {
+					return false;
+				}
 				ItemStack item = new ItemStack(Material.NETHERITE_PICKAXE,1);
 				item.addUnsafeEnchantment(Enchantment.DIG_SPEED,255);
 				item.addUnsafeEnchantment(Enchantment.DURABILITY,255);
@@ -103,6 +114,9 @@ public class Main extends JavaPlugin{
 		else if (label.equalsIgnoreCase("clear_world")) {
 			if (sender instanceof Player) {
 				Player player = (Player) sender;
+				if (!player.isOp()) {
+					return false;
+				}
 				Location loc = player.getLocation();
 				World targetWorld = loc.getWorld();
 				
