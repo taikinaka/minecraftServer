@@ -47,6 +47,22 @@ public class Main extends JavaPlugin{
 				return true;
 			}
 		}
+		if (label.equalsIgnoreCase("bow_game")) {
+			if (sender instanceof Player) {
+				Player player = (Player) sender;
+				Location loc = new Location(player.getLocation().getWorld(),0,102,0);
+				if (!player.isOp()) {
+					return false;
+				}
+				player.teleport(loc);
+				ItemStack item = new ItemStack(Material.BOW,1);
+				item.addUnsafeEnchantment(Enchantment.KNOCKBACK,255);
+				item.addUnsafeEnchantment(Enchantment.DURABILITY, 255);
+				item.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK,255);
+				player.getInventory().addItem(item);
+				return true;
+			}
+		}
 		else if (label.equalsIgnoreCase("randomitem")) {
 			System.out.println("Giving Random Item command input True");
 			if (sender instanceof Player) {
