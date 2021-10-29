@@ -1,5 +1,6 @@
 package me.spigot.server;
 
+
 import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
@@ -7,6 +8,9 @@ import org.bukkit.World;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Entity;
+import org.bukkit.entity.EntityType;
+import org.bukkit.entity.Minecart;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -55,11 +59,29 @@ public class Main extends JavaPlugin{
 					return false;
 				}
 				player.teleport(loc);
+		//		player.getInventory().clear();
 				ItemStack item = new ItemStack(Material.BOW,1);
-				item.addUnsafeEnchantment(Enchantment.KNOCKBACK,255);
+				item.addUnsafeEnchantment(Enchantment.ARROW_DAMAGE, 255);
 				item.addUnsafeEnchantment(Enchantment.DURABILITY, 255);
 				item.addUnsafeEnchantment(Enchantment.ARROW_KNOCKBACK,255);
 				player.getInventory().addItem(item);
+				World world = loc.getWorld();
+				Location m1loc = new Location(world,9,104,5);
+				Minecart minecart1 = world.spawn(m1loc, Minecart.class);
+				Entity villager1 = world.spawnEntity(m1loc, EntityType.VILLAGER);
+				minecart1.addPassenger(villager1);
+				
+				Location m2loc = new Location(world,16,105,-5);
+				Minecart minecart2 = world.spawn(m2loc, Minecart.class);
+				Entity villager2 = world.spawnEntity(m2loc, EntityType.VILLAGER);
+				minecart2.addPassenger(villager2);
+				Location m3loc = new Location(world,21,107,5);
+				Minecart minecart3 = world.spawn(m3loc, Minecart.class);
+				Entity villager3 = world.spawnEntity(m3loc, EntityType.VILLAGER);
+				minecart3.addPassenger(villager3);
+				
+				targetdeath game = new targetdeath(villager1, villager2, villager3, minecart1, minecart2, minecart3,getInstance());
+				game.startgame();
 				return true;
 			}
 		}
