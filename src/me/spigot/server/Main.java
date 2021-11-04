@@ -5,9 +5,14 @@ import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.Material;
 import org.bukkit.World;
+import org.bukkit.boss.BarColor;
+import org.bukkit.boss.BarStyle;
+import org.bukkit.boss.BossBar;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.conversations.MessagePrompt;
 import org.bukkit.enchantments.Enchantment;
+import org.bukkit.entity.Boss;
 import org.bukkit.entity.Entity;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Minecart;
@@ -80,7 +85,10 @@ public class Main extends JavaPlugin{
 				Entity villager3 = world.spawnEntity(m3loc, EntityType.VILLAGER);
 				minecart3.addPassenger(villager3);
 				
-				targetdeath game = new targetdeath(villager1, villager2, villager3, minecart1, minecart2, minecart3,getInstance());
+				BossBar bar = Bukkit.createBossBar("Villager", BarColor.RED, BarStyle.SOLID);
+				bar.setProgress(0);
+				world.getPlayers().forEach(bar::addPlayer);
+				targetdeath game = new targetdeath(villager1, villager2, villager3, minecart1, minecart2, minecart3,getInstance(),bar);
 				game.startgame();
 				return true;
 			}
